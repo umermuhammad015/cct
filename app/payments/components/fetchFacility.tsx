@@ -1,0 +1,85 @@
+"use client"
+
+import React, { useEffect, useState } from 'react'
+
+// import qs from 'query-string'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import FetchDistrictList from './fetchDistrictList'
+import FetchFacilityList from './fetchFacilityList';
+
+
+export default function FetchFacility({districts}:any) {
+
+    // console.log("component renderd")
+
+    // const router = useRouter()
+
+    const [facility, setFacility] = useState<any>('');
+    const [facilityList, setFacilityList] = useState<any>([])
+
+
+
+    useEffect(() => {
+
+        // console.log("FetchLeagues() loaded")
+
+        const fetchData = async () => {
+            try {
+                const all_facility = await FetchFacilityList()
+
+                // console.log("league list");
+                // console.log(all_league);
+
+                setFacilityList(all_facility);
+            } catch (error) {
+
+                console.error('Error fetching facility list:', error);
+            }
+        };
+
+        fetchData();
+
+    }, []);
+
+
+
+
+    // useEffect(() => {
+
+    //     console.log("us" + league + " " + season)
+
+    //     const query = {
+    //         league_code: league,
+    //         season: season,
+
+    //     }
+    //     const url = qs.stringifyUrl({
+    //         url: window.location.href,
+    //         query
+    //     }, { skipNull: true, skipEmptyString: true })
+
+    //     router.push(url)
+
+    // }, [league, season])
+
+    return (
+        <>
+            <div className="flex gap-2 rounded-lg  mt-1">
+                <select
+                    name="facility_type"
+                    className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                    value={facility}
+                    onChange={e => setFacility(e.target.value)}>
+                    {/* <option disabled selected>Leagues</option> */}
+                    {facilityList.length > 0 && facilityList.map((ft: any, i: any) => 
+                    <option className="text-primary" key={i}>{ft.facility_type}</option>)}
+
+
+                </select>
+
+
+            </div>
+        </>
+    )
+}
+

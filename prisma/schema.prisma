@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model cct_visits {
+  status                                Int?
+  status_msg                            String?
+  created                               Int?
+  stage                                 String?
+  visit_no                              Int?
+  m_cnic                                String?
+  m_name                                String?
+  lmp_date                              DateTime? @db.Date
+  hncct_id                              Float?
+  modifed_at                            String?
+  modified_date                         DateTime? @db.Date
+  husband_cnic                          BigInt?
+  flag                                  String?
+  husband_name                          String?
+  name                                  String?
+  short_form                            String?
+  visit_date                            DateTime? @db.Date
+  visit_time                            String?
+  address_line1                         String?
+  address_district                      String?
+  address_tehsil                        String?
+  user_district                         String?
+  user_tehsil                           String?
+  hf_name                               String?
+  facility                              String?
+  hfmis_code                            BigInt?
+  mother_mrn                            String?
+  child_mrn                             String?
+  phone_number                          String?
+  place_of_birth                        String?
+  date_of_birth                         String?
+  dob                                   DateTime? @db.Date
+  c_name                                String?
+  id                                    Float     @id(map: "pk_cct_visits")
+  registration_type                     String?
+  is_dil_beneficiary                    String?
+  created_at                            String?
+  created_date                          DateTime? @db.Date
+  created_time                          String?
+  mother_cnic                           String?
+  mother_date_of_birth                  String?
+  stage_id                              Int?
+  user_id_created_by                    String?
+  conf_stage                            String?
+  first_name                            String?
+  user_name                             String?
+  designation                           String?
+  visited_financial_year                String?
+  visit_type                            String?
+  is_phcip_user_district                String?
+  is_phcip_address_district             String?
+  is_phcip_upgradation_user_district    String?
+  is_phcip_upgradation_address_district String?
+  contact_number                        String?
+  pregnancy_days                        Int?
+  expected_due_date                     DateTime? @db.Date
+  visit_counts                          Int?
+  visit_number                          Int?
+  first_visit_date                      DateTime? @db.Date
+  last_visit_date                       DateTime? @db.Date
+  first_short_form                      String?
+  last_short_form                       String?
+  patient_age                           Int?
+  visit_status                          String?
+  wallet_status                         String?
+  visit_type_number                     Int?
+  visit_type_status                     String?
+  patient_id                            String?
+  cct_acceptance_status                 String?
+  dhis_name                             String?
+  dhis_code                             Int?
+  formal_name                           String?
+  dhis_tehsil                           String?
+  under_program                         String?
+  phcip_status                          String?
+  facility_type                         String?
+  delivery_date                         DateTime? @db.Date
+  year_month                            String?
+  month_min_date                        DateTime? @db.Date
+  month_max_date                        DateTime? @db.Date
+  iso_week_label                        String?
+  week_label                            String?
+  week_min_date                         DateTime? @db.Date
+  week_max_date                         DateTime? @db.Date
+  month_year_label                      String?
+  year_week                             String?
+  month_week                            String?
+  week_no                               String?
+}
+
+model sample_table {
+  id   Int     @id @default(autoincrement())
+  name String? @db.VarChar(50)
+  age  Int?
+}
